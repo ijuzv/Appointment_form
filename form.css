@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #009879;
+}
+
+
+body {
+    font-family: Helvetica;
+    font-size: 16px;
+    background-image: url(bg_image.avif);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.form {
+    background-color: rgb(250, 250, 250);
+    width: 100%;
+    max-width: 500px;
+    padding: 25px;
+    margin: 50px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+label {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 2px;
+    margin-top: 6px;
+    display: block;
+    align-items: center;
+    gap: 4px;
+}
+
+input, select, button, textarea {
+    padding: 10px;
+    width: 100%;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.name-wrapper,
+.city-state-wrapper,
+.pincode-nation-wrapper,
+.history-wrapper {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.pincode-container,
+.nationality-container,
+.city-container,
+.state-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+span.info {
+    font-size: 12px;
+    color: #777;
+    margin-top: -4px;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.history-wrapper label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px; 
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    margin: 0; 
+}
+
+#submit-button {
+    background-color: green;
+    opacity: 0.8;
+    transition-duration: 200ms;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+#reset-button {
+    background-color: red;
+    opacity: 0.8;
+    transition-duration: 200ms;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-wrapper,
+.buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+#submit-button:hover {
+    background-color: darkgreen;
+    opacity: 1;
+}
+
+#reset-button:hover {
+    background-color: darkred;
+    opacity: 1;
+}
+
+.error {
+    color: red !important;
+    font-size: 12px;
+    margin-top: -4px;
+    font-weight: 100;
+}
+
+.error-border {
+    border: 1px solid red;
+    outline: none;
+}
+
+#asterisk {
+    color: red;
+    font-size: 16px;
+}

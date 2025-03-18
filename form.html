@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Form</title>
+    <link rel="stylesheet" type="text/css" href="form.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1-crypto-js.min.js"></script>
+</head>
+<body>
+    <h1> Appointment Form for Doctor Consultation </h1>
+    <h2> We are here for you....</h2>
+    <div class="form">
+        <form method="POST" id="form">
+            <div class="field">
+                <label for="full-name"> Name <span id="asterisk"> * </span></label>
+                <div class="name-wrapper">
+                    <div class="first-name">
+                        <input type="text" id="fname" name="fname"><br>
+                        <span class="info"> First Name </span>
+                        <span id="nameError" class="error"></span>
+                    </div>
+                    <div class="last-name">
+                        <input type="text" id="lname" name="lname"><br>
+                        <span class="info"> Last Name </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="password"> Password <span id="asterisk"> * </span></label>
+                <input type="text" id="password" name="password">
+                <span id="passError" class="error"></span>
+            </div>
+
+            <div class="field">
+                <label for="conf-pass"> Confirm Password <span id="asterisk"> * </span></label>
+                <input type="text" id="conf-pass" name="conf-pass">
+                <span id="conPassError" class="error"></span>
+            </div>
+
+            <div class="field">
+                <label for="gender"> Gender </label>
+                <select id="gender" name="gender">
+                    <option value="male"> Male </option>
+                    <option value="female"> Female</option>
+                    <option value="other"> Other </option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="contact"> Contact <span id="asterisk"> * </span></label>
+                <input type="text" id="contact" name="contact" placeholder="e.g., 9876543210">
+                <span id="contactError" class="error"></span>
+            </div>
+
+            <div class="field">
+                <label for="email"> Email ID <span id="asterisk"> * </span></label>
+                <input type="text" id="email" name="email" placeholder="e.g., example@example.com">
+                <span id="emailError" class="error"></span>
+            </div>
+
+            <div class="field">
+                <label for="address1"> Address Line 1</label>
+                <input type="text" id="address1" name="address1">
+            </div>
+
+            <div class="field">
+                <label for="address2"> Address Line 2</label>
+                <input type="text" id="address2" name="address2">
+            </div>
+
+            <div class="field">
+                <div class="city-state-wrapper">
+                    <div class="city-container">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city">
+                    </div>
+                    <div class="state-container">
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state">
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="pincode-nation-wrapper">
+                    <div class="pincode-container">
+                        <label for="pincode">Pincode</label>
+                        <input type="number" id="pincode" name="pincode">
+                    </div>
+                    <div class="nationality-container">
+                        <label for="nationality">Nationality</label>
+                        <select id="nationality" name="nationality">
+                            <option value="" disabled selected> Select your nationality </option>
+                            <option value="india">India</option>
+                            <option value="america">America</option>
+                            <option value="london">London</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field" id="history">
+                <label>Have you ever applied to our facility before?</label>
+                <div class="history-wrapper">
+                    <label>
+                        <input type="radio" name="history" value="yes"> Yes
+                    </label>
+                    <label>
+                        <input type="radio" name="history" value="no"> No
+                    </label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="department">Procedure <span id="asterisk"> * </span></label>
+                <select id="department" name="department">
+                    <option value="general" selected> General Checkup </option>
+                    <option value="surgery"> Surgery </option>
+                    <option value="fracture"> Fracture </option>
+                </select>
+                <span id="nameError" class="error"></span>
+            </div>
+
+            <div class="field">
+                <label>Pick a Date <span id="asterisk"> * </span></label>
+                <input type="date" id="app-date" name="app-date">
+                <span id="dateError" class="error"></span>
+            </div>
+
+            <div class="field">
+                <label>Pick a Time <span id="asterisk"> * </span></label>
+                <input type="time" id="app-time" name="app-time">
+                <span id="timeError" class="error"></span>
+            </div>
+
+            <div class="field">
+                <label for="interest">Additional Info</label>
+                <textarea id="interest" name="interest" rows="4"></textarea>
+            </div>
+
+            <div class="button-wrapper">
+                <button type="submit" id="submit-button"> Submit </button>
+                <button type="reset" id="reset-button"> Reset </button>
+            </div>
+        </form>
+    </div>
+    <script src="form.js"></script>
+</body>
+</html>
