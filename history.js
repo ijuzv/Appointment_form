@@ -1,7 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const tableBody = document.getElementById('formDataTable');
-    const allData = JSON.parse(sessionStorage.getItem('allForms')) || [];
+    fetch('http://localhost:5000/api/appointmenthistory')
+    .then(response => {
+        if (!response.ok) throw new Error('Failed to fetch data');
+        return response.json()
+    })
+    .then(allData  => {
+        const tableBody = document.getElementById('formDataTable');
 
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+        const submissions = JSON.parse(localStorage.getItem("submissions"))
     
     function loadTable() {
         tableBody.innerHTML = '';
@@ -14,7 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${data.password}</td>
                 <td>${data.gender}</td>
                 <td>${data.contact}</td>
-                <td>${data.email}</td>
+                <td>
+                <a href="summary.html?id=${data.user_id}">Email</a>
+                </td>
                 <td>${data.address1}</td>
                 <td>${data.address2}</td>
                 <td>${data.city}</td>
@@ -62,3 +72,4 @@ document.addEventListener('DOMContentLoaded', () => {
 function goBack() {
     window.location.href = 'form.html';
 }
+});

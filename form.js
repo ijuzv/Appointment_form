@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const validMail = email => {
+            fetch('')
             let submissions = JSON.parse(sessionStorage.getItem('submissions')) || [];
             let emailExists = submissions.some(submission => submission.email === email);
             if (emailExists) {
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         validMail(formData.email);
 
         const passMatch = (password, conf_pass) => {
-            if (password !== conf_pass) {
+            if ((password !== conf_pass)) {
                 isValid = false;
                 errorMessage['password'] = "Password mismatch";
 
@@ -63,7 +64,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('conPassError').innerText = errorMessage['password'];
             }
         };
-        passMatch(formData.password, formData.conf_pass)
+        passMatch(formData.password, formData.conf_pass);
+
+        const passValidation = (password, conf_pass) => {
+            if ((password === '')||(conf_pass==='')) {
+                isValid = false;
+                errorMessage['password'] = "Password needed";
+
+                document.getElementById('password').classList.add('error-border');
+                document.getElementById('passError').innerText = errorMessage['password'];
+                
+                document.getElementById('conf-pass').classList.add('error-border');
+                document.getElementById('conPassError').innerText = errorMessage['password'];
+            }
+        }
+        passValidation(formData.password, formData.conf_pass)
 
         if (!/^\d{10}$/.test(formData.contact)) {
             isValid = false;
@@ -77,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isValid = false;
             errorMessage['date'] = "Date cannot be in the past";
             document.getElementById('app-date').classList.add('error-border');
-            document.getElementById('dateError').innerText = errorMessage['app-date']
+            document.getElementById('dateError').innerText = errorMessage['date']
         }
 
         const validateTime = (time) => {
@@ -107,13 +122,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (isValid) {
-            let allData = JSON.parse(sessionStorage.getItem('allForms')) || [];
-            allData.push(formData);
-            sessionStorage.setItem('allForms', JSON.stringify(allData));
-
-            sessionStorage.setItem('formData', JSON.stringify(formData))
-        
-            window.location.href = 'summary.html';
+            fetch('http://localhost:5000/api/createappointment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = 'summary.html';
+                    alert('Form submitted successfully');
+                } else {
+                    return response.json().then(err => {
+                        alert(`Error: ${err.message}`);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(`Error: ${error.message}`);
+            });
         }
+        
     });
 });
