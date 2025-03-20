@@ -1,14 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:5000/api/appointmenthistory')
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+
+    fetch('http://localhost:5000/api/appointment/'+id)
     .then(response => {
         if (!response.ok) throw new Error('Failed to fetch data');
+        console.log(response.Error)
         return response.json()
     })
-    .then(allData  => {
-        const data = allData[allData.length - 1];
-        if (!data) throw new Error('No appointment data found');
-
-        const summaryDiv = document.getElementById('summary')
+    .then(data  => {
+        const summaryDiv = document.getElementById('summary');
         summaryDiv.innerHTML = `
             <p><strong>First Name:</strong> ${data.fname}</p>
             <p><strong>Last Name:</strong> ${data.lname}</p>
